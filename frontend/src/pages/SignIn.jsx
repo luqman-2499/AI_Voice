@@ -16,7 +16,8 @@ function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [err, setErr] = useState("")
-  const [loading, setLoading] = useState("")  
+  const [loading, setLoading] = useState(false);
+ 
 
   const handleSignIn = async (e) => {
   e.preventDefault();
@@ -39,7 +40,8 @@ function SignIn() {
     setUserData(null);
     localStorage.removeItem("userData"); // Clear if login failed
     setLoading(false);
-    setErr(error.response?.data?.message || "SignIn Error");
+    setErr(error?.response?.data?.message || "Invalid credentials. Please try again.");
+
   }
 };
 
@@ -77,13 +79,5 @@ function SignIn() {
 }
 
 export default SignIn
-
-
-
-
-
-
-
-
 
 

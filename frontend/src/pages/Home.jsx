@@ -21,27 +21,6 @@ function Home() {
   const synth = window.speechSynthesis;
 
 
-  
-//  const handleLogOut = async () => {
-//   try {
-//     // Set flag in localStorage to prevent auto-login
-//     localStorage.setItem('justLoggedOut', 'true');
-    
-//     // Clear user data from localStorage
-//     localStorage.removeItem('userData');
-    
-//     setUserData(null);
-//     navigate("/signin"); // This will now work correctly with the fixed routes
-//   } catch {
-//     localStorage.setItem('justLoggedOut', 'true');
-//     localStorage.removeItem('userData');
-//     setUserData(null);
-//     navigate("/signin"); 
-//   }
-// };
-
-
-// START SPEECH RECOGNITION
 
 const handleLogOut = async () => {
   try {
@@ -60,6 +39,9 @@ const handleLogOut = async () => {
   }
 };
 
+
+
+// START SPEECH RECOGNITION
 
   const startRecognition = () => {
     try {

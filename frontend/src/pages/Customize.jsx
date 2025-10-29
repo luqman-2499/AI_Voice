@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import Card from '../components/Card'
 import image1 from "../assets/image1.png"
 import image2 from "../assets/image2.jpg"
@@ -10,10 +10,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 function Customize() {
 
-  const {serverUrl,
-      userData,
-      setUserData,
-      backendImage,
+  const {
       setBackendImage,
       frontendImage,
       setFrontendImage,
