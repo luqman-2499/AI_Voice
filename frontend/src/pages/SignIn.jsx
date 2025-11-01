@@ -19,33 +19,95 @@ function SignIn() {
   const [loading, setLoading] = useState(false);
  
 
-  const handleSignIn = async (e) => {
+//   const handleSignIn = async (e) => {
+//   e.preventDefault();
+//   setErr("");
+//   setLoading(true);
+
+//   try {
+//     console.log("Attempting Sign In...");
+
+//     const result = await axios.post(
+//       `${serverUrl}/api/auth/signin`,
+//       { email, password },
+//       {
+//         withCredentials: true, // 👈 Important: allow cookies to be sent/stored
+//       }
+//     );
+
+//     console.log("Sign In Success, Response Data:", result.data);
+
+//     // ✅ Save user data in both context & localStorage
+//     setUserData(result.data);
+//     localStorage.setItem("userData", JSON.stringify(result.data));
+
+//     setLoading(false);
+
+//     // ✅ Navigate to home page after success
+//     navigate("/");
+
+//   } catch (error) {
+//     console.log("Sign In Error:", error);
+
+//     // Clear user data if sign-in failed
+//     setUserData(null);
+//     localStorage.removeItem("userData");
+
+//     setLoading(false);
+
+//     setErr(
+//       error?.response?.data?.message ||
+//       "Invalid credentials. Please try again."
+//     );
+//   }
+// };
+
+
+const handleSignIn = async (e) => {
   e.preventDefault();
   setErr("");
   setLoading(true);
+
   try {
+    console.log("🔑 Attempting Sign In...");
+
     const result = await axios.post(
       `${serverUrl}/api/auth/signin`,
       { email, password },
-      { withCredentials: true }
+      {
+        withCredentials: true,
+      }
     );
 
-    // Update context AND localStorage
+    console.log("✅ Sign In Success, Response Data:", result.data);
+
+    // ✅ Save user data in both context & localStorage
     setUserData(result.data);
     localStorage.setItem("userData", JSON.stringify(result.data));
-    setLoading(false);
-    navigate("/"); // Redirect to Home or Customize based on routes
-  } catch (error) {
-    console.log(error);
-    setUserData(null);
-    localStorage.removeItem("userData"); // Clear if login failed
-    setLoading(false);
-    setErr(error?.response?.data?.message || "Invalid credentials. Please try again.");
+    
+    // 🧹 CLEANUP: Remove any logout flags
+    localStorage.removeItem("justLoggedOut");
 
+    setLoading(false);
+
+    // ✅ Navigate to home page after success
+    navigate("/");
+
+  } catch (error) {
+    console.log("❌ Sign In Error:", error);
+
+    // Clear user data if sign-in failed
+    setUserData(null);
+    localStorage.removeItem("userData");
+
+    setLoading(false);
+
+    setErr(
+      error?.response?.data?.message ||
+      "Invalid credentials. Please try again."
+    );
   }
 };
-
-
 
   return (
     <div className='w-full h-[100vh] bg-cover flex justify-center items-center' style={{backgroundImage: `url(${bg_img})`}} >

@@ -11,7 +11,8 @@ const geminiResponse = async (command, assistantName,userName) => {
         Your task is to understand user natural language input and respond with a JSON obect like: 
         {
           "type" : "general" | "google_search" | "youtube_search" | "youtube_play" | "get_time" | "get_date" | "get_day"| "get_month" | "calculator_open" | "facebook_open" | "linkedin_open" 
-          | "gmail_open" | "compose_gmail" | "whatsapp_open" |"weather_show", "userInput": "<original user input>" {Only remove your name fom userInput if exists }
+          | "gmail_open" | "whatsapp_open" | "news_read" |"weather_show", 
+          "userInput": "<original user input>" {Only remove your name fom userInput if exists }
           "response" : "<A Short response to read out load to the user>"}
           
           Instructions: 
@@ -34,7 +35,8 @@ const geminiResponse = async (command, assistantName,userName) => {
           -"linkedin_open": if user wants to open LinkedIn.
           -"gmail_open": if user wants to open gmail.
           -"whatsapp_open": if user wants to open whatsapp.
-        //   -"compose_gmail": if user wants to compose or tells to write an email or message.
+          -"news_read": if user wants to hear latest news headlines. Respond with actual 4 to 5 current news headlines in the "response" field.
+        
 
 
           Important:

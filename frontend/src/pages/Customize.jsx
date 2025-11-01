@@ -8,6 +8,7 @@ import {userDataContext} from "../context/UserContext.jsx"
 import {useNavigate} from 'react-router-dom'
 import { IoMdArrowRoundBack } from "react-icons/io";
 
+
 function Customize() {
 
   const {
@@ -37,7 +38,7 @@ function Customize() {
         className='absolute top-[30px] left-[30px] text-white w-[25px] h-[25px] cursor-pointer'/>
 
       <h1 className='text-white mb-10 text-[30px] text-center'>Select your <span className='text-blue-600'>Assistant Image</span> </h1>
-      <div className='w-full max-w-[900px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center'>
+      <div className='w-full max-w-[900px] grid grid-cols-2 lg:grid-cols-4 gap-5 justify-items-center'>
 
       <Card image={image1} />
       <Card image={image2} />
