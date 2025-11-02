@@ -162,7 +162,8 @@ const handleLogOut = async () => {
     recognition.onend = () => {
       isRecognizingRef.current = false;
       setListening(false);
-      if (!isSpeakingRef.current) setTimeout(() => safeRecognition(), 20000);
+      // Removed auto-restart 
+      // if (!isSpeakingRef.current) setTimeout(() => safeRecognition(), 20000);
     };
 
     recognition.onerror = (event) => {
@@ -206,9 +207,9 @@ const handleLogOut = async () => {
   }
 };
 
-    const fallback = setInterval(() => {
-      if (!isSpeakingRef.current && !isRecognizingRef.current) safeRecognition();
-    }, 10000);
+    // const fallback = setInterval(() => {
+    //   if (!isSpeakingRef.current && !isRecognizingRef.current) safeRecognition();
+    // }, 10000);
 
     safeRecognition();
 
@@ -216,7 +217,7 @@ const handleLogOut = async () => {
       recognition.stop();
       setListening(false);
       isRecognizingRef.current = false;
-      clearInterval(fallback);
+      // clearInterval(fallback);
     };
   }, [userData, ttsUnlocked]);
 
