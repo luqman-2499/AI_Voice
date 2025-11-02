@@ -5,9 +5,8 @@ axios.defaults.withCredentials = true;
 export const userDataContext = createContext();
 
 function UserContext({ children }) {
-  // const serverUrl = "http://localhost:8000";
-  const serverUrl = "https://ai-voice-8y2m.onrender.com";
 
+  const serverUrl = import.meta.env.VITE_API_URL;  // deployment and local link in .env file
   const [frontendImage, setFrontendImage] = useState(null);
   const [backendImage, setBackendImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
