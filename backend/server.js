@@ -15,8 +15,8 @@ app.set("trust proxy", 1); // trust Render’s proxy so secure cookies work
 app.use(
   cors({
       origin: [
-      "http://localhost:5173",  // LOCAL TESTING
-      // "https://ai-voice-theta.vercel.app"  // DEPLOYMENT
+      // "http://localhost:5173",  // LOCAL TESTING
+      "https://ai-voice-self.vercel.app"  // DEPLOYMENT
       ],
       credentials: true
   })
