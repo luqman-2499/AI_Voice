@@ -162,7 +162,7 @@ const handleLogOut = async () => {
     recognition.onend = () => {
       isRecognizingRef.current = false;
       setListening(false);
-      if (!isSpeakingRef.current) setTimeout(() => safeRecognition(), 1000);
+      if (!isSpeakingRef.current) setTimeout(() => safeRecognition(), 20000);
     };
 
     recognition.onerror = (event) => {
