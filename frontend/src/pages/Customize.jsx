@@ -1,13 +1,9 @@
 import { useContext, useRef, useState } from 'react'
 import Card from '../components/Card'
-import image1 from "../assets/image1.png"
-import image2 from "../assets/image2.jpg"
-import image3 from "../assets/authBg.png"
 import { LuImagePlus } from "react-icons/lu";
 import {userDataContext} from "../context/UserContext.jsx"
 import {useNavigate} from 'react-router-dom'
 import { IoMdArrowRoundBack } from "react-icons/io";
-
 
 function Customize() {
 
@@ -25,10 +21,7 @@ function Customize() {
     const file=e.target.files[0]
     setBackendImage(file)
     setFrontendImage(URL.createObjectURL(file))
-
   }
-
-  
 
   return (
     <div className='w-full min-h-screen bg-gradient-to-t from-black to-blue-900 flex flex-col items-center overflow-auto pt-10 pb-20'>
@@ -40,14 +33,14 @@ function Customize() {
       <h1 className='text-white mb-10 text-[30px] text-center'>Select your <span className='text-blue-600'>Assistant Image</span> </h1>
       <div className='w-full max-w-[900px] grid grid-cols-2 lg:grid-cols-4 gap-5 justify-items-center'>
 
-      <Card image={image1} />
-      <Card image={image2} />
-      <Card image={image3} />
+      {/* Change to public paths */}
+      <Card image="/image1.png" />
+      <Card image="/image2.jpg" />
+      <Card image="/authBg.png" />
 
        <div className={`w-[70px] h-[140px] lg:w-[150px] lg:h-[250px] bg-blue-950 border-2 border-blue-600 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-800 hover:border-4 hover:border-white cursor-pointer flex items-center justify-center ${selectedImage=="input"? "border-4 border-white shadow-2xl shadow-blue-800": null}`} onClick={()=>{
         inputImage.current.click()
         setSelectedImage("input")
-        
         }}> 
          {!frontendImage && <LuImagePlus className='text-white w-[40px] h-[40px] '/> }
         {frontendImage && <img src={frontendImage} className='w-full h-full object-cover' /> }

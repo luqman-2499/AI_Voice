@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import bg_img from "../assets/authBg.png"
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { userDataContext } from '../context/UserContext';
@@ -49,7 +48,7 @@ function SignUp() {
   return (
     <div
       className="w-full h-[100vh] bg-cover flex justify-center items-center"
-      style={{ backgroundImage: `url(${bg_img})` }}
+      style={{backgroundImage: `url(/authBg.png)`}}
     >
       <form
         onSubmit={handleSignUp}

@@ -83,10 +83,18 @@ const handleLogOut = async () => {
   const speak = (text) => {
     if (!text) return;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'hi-IN';
+    utterance.lang = 'en-US';
     const voices = window.speechSynthesis.getVoices();
-    const hindiVoice = voices.find(v => v.lang === 'hi-IN');
-    if (hindiVoice) utterance.voice = hindiVoice;
+    const femaleVoice = voices.find(voice => 
+    voice.lang === 'en-US' && 
+    voice.name.toLowerCase().includes('female')
+    ) || voices.find(voice => 
+    voice.lang === 'en-US' && 
+    !voice.name.toLowerCase().includes('male')
+  );
+  
+  if (femaleVoice) utterance.voice = femaleVoice;
+
     isSpeakingRef.current = true;
     utterance.onend = () => {
       setAiText("")
@@ -207,10 +215,6 @@ const handleLogOut = async () => {
   }
 };
 
-    // const fallback = setInterval(() => {
-    //   if (!isSpeakingRef.current && !isRecognizingRef.current) safeRecognition();
-    // }, 10000);
-
     safeRecognition();
 
     return () => {
@@ -285,7 +289,7 @@ const handleLogOut = async () => {
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Google Search</span>
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Open YouTube</span>
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Ask News</span>
-          <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Time,Date,Month</span>
+          <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Time,Date,Month,Day</span>
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Open calculator</span>
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Information</span>
           <span className='text-white text-[16px] bg-green-500 p-1 rounded-2xl'>Open facebook</span>
@@ -386,18 +390,23 @@ const handleLogOut = async () => {
           {/* ENABLE VOICE BUTTON */}
           <button
             onClick={() => {
-                if (!ttsUnlocked) {
-                  window.speechSynthesis.speak(new SpeechSynthesisUtterance(""));
-                  setTtsUnlocked(true);
-                } else {
-                window.speechSynthesis.speak(new SpeechSynthesisUtterance("Already Activated and waiting for command"));
-                }
-              }}
+            if (!ttsUnlocked) {
+              window.speechSynthesis.speak(new SpeechSynthesisUtterance(""));
+              setTtsUnlocked(true);
+            }
+            startRecognition(); // Start listening immediately
+          }}
             className={`w-full max-w-[250px] h-[60px] lg:h-[70px] rounded-full text-white font-semibold cursor-pointer mt-3 transition-colors ${
             !ttsUnlocked ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}`}
-            >
-            {!ttsUnlocked ? 'Enable Voice' : 'Now Speak'}
+          >
+          {!ttsUnlocked ? 'Enable Voice' : 'Start Listening'}
           </button>
+
+          {listening && (
+          <div className="text-green-500 text-sm animate-pulse mt-2">
+            🎤 Listening... Speak now!
+          </div>
+          )}
 
           <div className='w-full max-w-[250px] mt-1 flex justify-center items-center rounded-xl overflow-hidden'>
             {!aiText && <img src={userImg} alt="User Voice" className='w-full' />}

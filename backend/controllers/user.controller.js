@@ -78,7 +78,7 @@ export const askToAssistant = async (req,res) => {
         return res.json({
           type,
           userInput : gemResult.userInput,
-          response: `current time is ${moment().format("hh:mm:A")}`,
+          response: `current time is ${moment().format("hh:mm A")}`,
           updatedUser 
         });
 
@@ -95,6 +95,14 @@ export const askToAssistant = async (req,res) => {
           type,
           userInput : gemResult.userInput,
           response: `Today is ${moment().format("MMMM")}`,
+          updatedUser 
+        });
+      
+      case 'get_year':
+        return res.json({
+          type,
+          userInput: gemResult.userInput,
+          response: `current year is ${moment().format("YYYY")}`,
           updatedUser 
         });
 

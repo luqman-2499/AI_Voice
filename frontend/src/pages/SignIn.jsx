@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import bg_img from "../assets/authBg.png"
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { userDataContext } from '../context/UserContext';
@@ -66,7 +65,7 @@ const handleSignIn = async (e) => {
 };
 
   return (
-    <div className='w-full h-[100vh] bg-cover flex justify-center items-center' style={{backgroundImage: `url(${bg_img})`}} >
+    <div className='w-full h-[100vh] bg-cover flex justify-center items-center' style={{backgroundImage: `url(/authBg.png)`}} >
 
       <form className='w-[90%] flex flex-col items-center justify-center gap-[20px] h-[600px] max-w-[500px] rounded-2xl bg-black/60 backdrop-blur shadow-lg shadow-black px-[20px]' onSubmit={handleSignIn}>
 
